@@ -1,0 +1,9 @@
+h3, .viewDetails {
+  padding: 20px !important; }
+
+h3 {
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-bottom-width: 2px;
+  margin-top: 65px !important;
+  text-align: center; }

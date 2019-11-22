@@ -1,0 +1,38 @@
+
+
+
+
+
+// padding
+%req-padding{
+  padding: 20px !important;
+}
+
+
+// margin
+%body-margin{
+  margin:0px;
+}
+%divs-color{
+  background-color: aquamarine;
+}
+// font size and weight
+@mixin font-style($size,$weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+// bottom border and its color
+@mixin border-bottom($style,$color,$width){
+  border-bottom-style: $style;
+  border-bottom-color: $color;
+  border-bottom-width: $width;
+}
+
+
+// all side border
+%border-allSides{
+  border-style: solid;
+  border-width: 1px;
+
+}

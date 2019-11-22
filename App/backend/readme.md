@@ -8,4 +8,4 @@ npm install
 TO start app:
 npm start
 
-if you are cloning do "npm install"
+if you are cloning do "npm install" and "npm install node-sass", "npm audit fix"

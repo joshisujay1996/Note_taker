@@ -1,0 +1,13 @@
+
+<h3>View Jobs</h3>
+{{#each list1}}
+<div class="viewDetails">
+    {{!-- looping over the list form backend, to display all candidates inside a list --}}
+    <strong><ul>Job Title: &nbsp;{{this.jobtitle}} </ul></strong>
+    <ul>Job ID: &nbsp;{{this.jobid}} </ul>
+    <ul>Job Type:&nbsp;{{this.jobtype}} </ul>
+    <ul>Job Description: &nbsp;{{this.jobdescription}} </ul>
+    <ul>Date Posted: {{this.time}}</ul>
+    <br>
+</div>
+{{/each}}

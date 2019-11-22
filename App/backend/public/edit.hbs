@@ -1,0 +1,40 @@
+
+<h3>Update Jobs</h3>
+
+
+
+<div class="addJobs">
+    <form action="/update" method="POST">
+    {{!-- update jobs based on jobid --}}
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="jobid">Job ID</label>
+                <input type="number" class="form-control" name="jobid" id="jobid" placeholder="Job ID" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="jobtitle">Job Title</label>
+                <input type="text" class="form-control" name="jobtitle" id="jobtitle" placeholder="Job Title" required>
+            </div>
+        </div>
+        <div class = "form-row">
+            <div class="form-group col-md-6">
+                <label for="jobtype">Job Type</label>
+                <select class="form-control" name = "jobtype" id="jobtype" required>
+                    <option>Full Time</option>
+                    <option>Internship</option>
+                    <option>Co-op</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="jobDescription">Job Description</label>
+                <textarea class="form-control" id="jobdescription" name="jobdescription" rows="4" required></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Update</button>
+    </form>
+</div>
+
+

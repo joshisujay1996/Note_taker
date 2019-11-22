@@ -1,0 +1,16 @@
+
+<h3>Delete Job</h3>
+
+
+<div class="addJobs">
+<form action="/delete" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{!-- deleting user based on user --}}
+            <label for="jobid">Job ID</label>
+            <input type="number" class="form-control" name="jobid" id="jobid" placeholder="Job ID" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Delete Job</button>
+</form>
+</div>
