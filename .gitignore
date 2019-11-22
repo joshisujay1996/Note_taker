@@ -1,0 +1,12 @@
+# dont add this folder
+AWS_infra_terraform/backend_and_db/.terraform/
+# DOnt add this file
+# AWS_infra_terraform/.DS_Store
+# packer/.DS_Store
+
+# All files with name .DS_Store is ignored
+.DS_Store
+
+
+# Ignore all java files
+*.java
