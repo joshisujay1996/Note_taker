@@ -6,4 +6,4 @@ add subnet id or vpc if necessary
 packer build \
     -var 'aws_access_key=your_aws_access_key' \
     -var 'aws_secret_key=your_aws_secret_key' \
-nodejs_ami_.json
+nodejs_ami.json
