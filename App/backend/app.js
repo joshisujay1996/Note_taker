@@ -20,7 +20,6 @@ var addRouter = require('./routes/add');
 var detailsRouter = require('./routes/details');
 var deleteRouter = require('./routes/delete');
 var updateRouter = require('./routes/update');
-var jobsRouter = require('./routes/jobs');
 var app = express();
 
 
@@ -67,7 +66,6 @@ app.use('/',addRouter);
 app.use('/',detailsRouter);
 app.use('/', deleteRouter);
 app.use('/',updateRouter);
-app.use('/api',jobsRouter);
 
 
 

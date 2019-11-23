@@ -10,25 +10,25 @@ var config = require('../controller/database');
 
 
 //import the created user models
-var Jobs = require("../models/jobs");
+var Events = require("../models/events");
 
 
 
-//deleting JOB data
+//deleting EVENT data
 router.post('/delete',function(req,res) {
-    //to get the recode with the respective jobid, so then we can delete it.
-   Jobs.find({ jobid:req.body.jobid},function (err,jobs) {
-       if(jobs[0] === undefined){
+    //to get the recode with the respective eventid, so then we can delete it.
+   Events.find({ eventid:req.body.eventid},function (err,events) {
+       if(events[0] === undefined){
            // return next(err);
 
-            //error if there is no such job
-           res.render('error',{whatKind: "The requested job to be deleted does not exist"}) ;
+            //error if there is no such event
+           res.render('error',{whatKind: "The requested event to be deleted does not exist"}) ;
        }else {
-           var rem = jobs[0]['_id'];
-           Jobs.findByIdAndRemove(rem).exec();
-           res.redirect('jobs');
+           var rem = events[0]['_id'];
+           Events.findByIdAndRemove(rem).exec();
+           res.redirect('events');
        }
-        // console.log(jobs);
+        
 
    });
 
