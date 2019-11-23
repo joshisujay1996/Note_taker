@@ -121,8 +121,8 @@ resource "aws_security_group" "db_sec" {
   description = "Allow traffic from public subnet"
 
   ingress {
-    from_port = 3306
-    to_port = 3306
+    from_port = 5500
+    to_port = 5500
     protocol = "tcp"
     # Allowing only public subnet ips 
     cidr_blocks = ["${var.public_subnet_cidr}"]
@@ -134,17 +134,10 @@ resource "aws_security_group" "db_sec" {
     protocol = "icmp"
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
-
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["${var.public_subnet_cidr}"]
-  }
   
   egress {
-    from_port = 3306
-    to_port = 3306
+    from_port = 5500
+    to_port = 5500
     protocol = "tcp"
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
