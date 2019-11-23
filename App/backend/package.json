@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai-http": "^4.3.0",
     "cjs": "0.0.11",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
@@ -23,7 +25,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.2",
     "node-sass": "^4.13.0"
   }
 }
