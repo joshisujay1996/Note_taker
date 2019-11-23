@@ -1,0 +1,13 @@
+
+<h3>View Events</h3>
+{{#each list1}}
+<div class="viewDetails">
+    {{!-- looping over the list form backend, to display all events inside a list --}}
+    <strong><ul>Event Title: &nbsp;{{this.eventtitle}} </ul></strong>
+    <ul>Event ID: &nbsp;{{this.eventid}} </ul>
+    <ul>Event Type:&nbsp;{{this.eventtype}} </ul>
+    <ul>Event Description: &nbsp;{{this.eventdescription}} </ul>
+    <ul>Date Posted: {{this.time}}</ul>
+    <br>
+</div>
+{{/each}}

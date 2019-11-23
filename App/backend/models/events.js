@@ -4,38 +4,33 @@ var mongoose = require('mongoose');
 //mongoose schema
 var Schema = mongoose.Schema;
 
-var CandidateSchema = new Schema({
-    jobid: {
-        type: String,
+var EventsSchema = new Schema({
+    eventid: {
+        type: Number,
+        unique : true,
         required : true
     },
-    jobtitle:{
+    eventtitle:{
         type: String,
         required : true
 
     },
-    email:{
+    eventtype:{
         type : String,
-        unique : true,
         required : true
     },
-    username:{
-      type:String,
-      required :true
-    },
-    resume:{
+    eventdescription:{
         type:String,
         required :true
 
     },
     //current format is epoch
     time : { type: String, default: (new Date()) },
-
-    company : { type: String, default:"Misco Networks" }
+    company:{type:String,default: "Misco Networks"}
 
 
 });
 //can also add time stamp for created and updated at time and data
 // JobSchema.set('timestamps', true);
 
-module.exports = mongoose.model('candidates', CandidateSchema);
+module.exports = mongoose.model('events', EventsSchema);

@@ -1,11 +1,12 @@
 
-<h3>Update Events</h3>
+<div class ="headingPage">
+    <h3>Add Events</h3>
+</div>
 
 
-
+{{!-- to post jobs --}}
 <div class="addEvents">
-    <form action="/update" method="POST">
-    {{!-- update events based on jobid --}}
+    <form action="/add" method="POST">
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="eventid">Event ID</label>
@@ -15,7 +16,7 @@
         
         <div class = "form-row">
             <div class="form-group col-md-6">
-                <label for="eventtitle">Event Title</label>
+                <label for="jobtitle">Event Title</label>
                 <input type="text" class="form-control" name="eventtitle" id="eventtitle" placeholder="Event Title" required>
             </div>
         </div>
@@ -23,19 +24,23 @@
 
         <div class = "form-row">
             <div class="form-group col-md-6">
-                <label for="eventtype">Event Type</label>
+                <label for="jobtype">Event Type</label>
                 <input type="text" class="form-control" name = "eventtype" id="eventtype" placeholder="Event Type"required>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="eventDescription">Event Description</label>
+                <label for="jobDescription">Event Description</label>
                 <textarea class="form-control" id="eventdescription" name="eventdescription" rows="4" required></textarea>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Update Event</button>
+
+        <button type="submit" class="btn btn-primary mb-2">Add Event</button>
     </form>
 </div>
+
+
+
 
 
