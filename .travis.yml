@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 12.10.0
+
+install:
+  - cd App/backend/
+  - npm install 
+  - npm install node-sass
+  - npm audit fix
+
+script:
+  - cd App/backend/
+  - npm run test
