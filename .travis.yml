@@ -9,5 +9,4 @@ install:
   - npm audit fix
 
 script:
-  - cd App/backend/
   - npm run test
