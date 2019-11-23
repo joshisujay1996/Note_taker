@@ -20,7 +20,7 @@ variable "private_subnet_cidr" {
 
 variable "my_ami" {
   description = "The ami created using packer (Amazon ami with nodeJS)"
-  default = "ami-0fae0b4e26597ded9"
+  default = "ami-0d246151e78ae04d8"
 }
 
 variable "my_key" {
