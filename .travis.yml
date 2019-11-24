@@ -10,3 +10,38 @@ install:
 
 script:
   - npm run test
+
+after_success:
+  - cd ../../
+  - ls -al
+  - mkdir code_deploy_artificats
+  - cd App/backend
+  - ls -al
+  - zip -r smart_events_backend_zip.zip App/backend *.sh *.yml
+  - mv smart_events_backend_zip.zip ../../code_deploy_artificats
+  - cd code_deploy_artificats
+  - ls -al
+
+deploy:
+  - provider: s3
+    local_dir: smart_events_backend_zip.zip
+    bucket: $s3_bucket
+    region: us-east-1
+    skip_cleanup: true
+    access_key_id: $access_key_id
+    secret_access_key: $secret_access_key
+    on:
+      all_branches: true
+
+- provider: codedeploy
+    access_key_id: $access_key_id
+    bucket: $s3_bucket
+    key: smart_events_backend_zip.zip
+    bundle_type: zip
+    application: $application
+    deployment_group: $deployment_group
+    region: us-east-1
+    secret_access_key: $secret_access_key
+    wait-until-deployed: true
+    on:
+      all_branches: true
