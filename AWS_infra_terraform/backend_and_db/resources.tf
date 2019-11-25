@@ -25,6 +25,162 @@
 
 # }
 
+resource "aws_iam_policy" "policy1" {
+  name        = "CodeDeploy-EC2-S3"
+  description = "EC2 s3 access policy"
+  policy      = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "s3:Get*",
+                "s3:List*",
+                "s3:Put*",
+                "s3:Delete*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_policy" "policy2" {
+  name        = "TravisCI-Upload-To-S3"
+  description = "s3 upload Policy for user TravisCI"
+  policy      = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "*"
+            ]
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_policy" "policy3" {
+  name        = "TravisCI-Code-Deploy"
+  description = "Code Deploy Policy for user TravisCI"
+  policy      = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codedeploy:RegisterApplicationRevision",
+        "codedeploy:GetApplicationRevision"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codedeploy:CreateDeployment",
+        "codedeploy:GetDeployment"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codedeploy:GetDeploymentConfig"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_user" "user" {
+  name = "TravisCI-user"
+}
+
+resource "aws_iam_user_policy_attachment" "attach2" {
+  user       = "${aws_iam_user.user.name}"
+  policy_arn = "${aws_iam_policy.policy2.arn}"
+  
+  
+}
+resource "aws_iam_user_policy_attachment" "attach3" {
+  user       = "${aws_iam_user.user.name}"
+  policy_arn =  "${aws_iam_policy.policy3.arn}"
+}
+
+resource "aws_iam_role" "role1" {
+  name = "CodeDeployEC2ServiceRole"
+  description = "Allows EC2 instances to call AWS services on your behalf"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": "sts:AssumeRole",
+        "Principal": {
+          "Service": "ec2.amazonaws.com"
+        },
+        "Effect": "Allow",
+        "Sid": ""
+      }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "role1-attact1" {
+  role       = "${aws_iam_role.role1.name}"
+  policy_arn = "${aws_iam_policy.policy1.arn}"
+}
+
+resource "aws_iam_instance_profile" "role1_profile" {
+  name = "CodeDeployEC2ServiceRole"
+  role = "${aws_iam_role.role1.name}"
+}
+
+
+
+resource "aws_iam_role" "role2" {
+  name = "CodeDeployServiceRole"
+  description = "Allows CodeDeploy to call AWS services such as Auto Scaling on your behalf"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "codedeploy.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "codedeploy_service" {
+  role       = "${aws_iam_role.role2.name}"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+}
+
+
+
 resource "aws_instance" "mongoDB" {
   ami = "${var.my_ami}"
   instance_type = "t2.micro"
@@ -33,6 +189,7 @@ resource "aws_instance" "mongoDB" {
   tags = {
       name = "My DB"
   }
+  iam_instance_profile="${aws_iam_instance_profile.role1_profile.name}"
 
 }
 
@@ -58,4 +215,5 @@ resource "aws_instance" "default" {
     tags = {
         name = "Web instance"
     }
+    iam_instance_profile="${aws_iam_instance_profile.role1_profile.name}"
 }
