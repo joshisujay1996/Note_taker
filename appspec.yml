@@ -3,13 +3,26 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user
+permissions:
+  - object: /home/ec2-user/App
+    owner: ec2-user
+    group: ec2-user
+    mode: 700
+    type:
+      - file
+  - object: /home/ec2-user/App
+    owner: ec2-user
+    group: ec2-user
+    mode: 700
+    type:
+      - directory
 hooks:
   BeforeInstall:
     - location: ./App_spec_scripts/install_dependencies.sh
       timeout: 300
       runas: ec2-user
   AfterInstall:
-    - location: ./App_spec_scripts/change_permissions.sh
+    - location: ./App_spec_scripts/change_perm.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
