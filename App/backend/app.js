@@ -3,7 +3,7 @@ var path = require('path');
 // var path  = require('engines')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
+// var sassMiddleware = require('node-sass-middleware');
 var createError = require('http-errors');
 var mongoose = require('mongoose');
 var config = require('./controller/database');
@@ -41,12 +41,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: false, // true = .sass and false = .scss
-  sourceMap: true
-}));
+// app.use(sassMiddleware({
+//   src: path.join(__dirname, 'public'),
+//   dest: path.join(__dirname, 'public'),
+//   indentedSyntax: false, // true = .sass and false = .scss
+//   sourceMap: true
+// }));
 
 //set engine to html
 app.engine('hbs',hbs({extname: 'hbs', defaultLayout:'layout',layoutsDir: __dirname+'/public/layouts'}) );

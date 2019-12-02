@@ -9,7 +9,7 @@ if [ "$(whoami)" != "ec2-user" ]; then
 fi
 
 npm install 
-npm install node-sass
+# npm install node-sass
 npm audit fix
 cd /home/ec2-user/App/backend/
 nohup npm start >> app.log 2>&1 &
