@@ -1,4 +1,5 @@
-mkdir logs
+sudo mkdir logs
+sudo chmod 777 /home/ec2-user/logs
 sudo chmod 777 /home/ec2-user/App/ 
 sudo chmod 777 /home/ec2-user/App/backend/ >> /home/ec2-user/logs/logs1.txt
 cd /home/ec2-user/App/backend/
