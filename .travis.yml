@@ -12,11 +12,12 @@ script:
   - npm run test
 
 after_success:
+  - rm -rf node_modules/
   - cd ../../
   - ls -al
   - mkdir code_deploy_artificats
   - ls -al
-  - zip -r smart_events_backend_zip.zip App/backend *.sh *.yml
+  - zip -r smart_events_backend_zip.zip App/backend App_spec_scripts *.sh *.yml
   - mv smart_events_backend_zip.zip code_deploy_artificats/
   - cd code_deploy_artificats
   - ls -al
