@@ -22,7 +22,7 @@ hooks:
       timeout: 300
       runas: ec2-user
   AfterInstall:
-    - location: ./App_spec_scripts/change_perm.sh
+    - location: ./App_spec_scripts/change_prem.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
