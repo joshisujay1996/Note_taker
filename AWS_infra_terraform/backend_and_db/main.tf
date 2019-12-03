@@ -65,6 +65,17 @@ resource "aws_route_table_association" "psubnet_to_rb" {
     subnet_id = "${aws_subnet.public_subnet.id}"
     route_table_id = "${aws_route_table.route_tb.id}"
 }
+
+# resource "aws_route_table_association" "private_subnet_to_rb" {
+#     subnet_id = "${aws_subnet.private_subnet.id}"
+#     route_table_id = "${aws_route_table.route_tb.id}"
+# }
+
+# resource "aws_route_table_association" "private_subnet_to_rb2" {
+#     subnet_id = "${aws_subnet.private_subnet2.id}"
+#     route_table_id = "${aws_route_table.route_tb.id}"
+# }
+
 ################################################################################################
 
 # Security group
@@ -80,8 +91,8 @@ resource "aws_security_group" "web_sec" {
   }
 
   ingress {
-    from_port = 5500
-    to_port = 5500
+    from_port = 443
+    to_port = 443
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
